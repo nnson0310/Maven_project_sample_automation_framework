@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name="saucedemo" parallel="false">
+    <listeners>
+        <listener class-name="reportConfig.MethodListener"></listener>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="reportConfig.ReportNGListener"/>
+    </listeners>
+    <test name="Firefox" description="Run on firefox">
+        <parameter name="browser" value="firefox"></parameter>
+        <parameter name="url" value="https://www.saucedemo.com/"></parameter>
+        <classes>
+            <class name="saucedemo.TC_01_Sort_Asc_Desc"/>
+        </classes>
+    </test>
+</suite>
