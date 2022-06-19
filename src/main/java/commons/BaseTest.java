@@ -5,6 +5,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,12 +16,15 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collections;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -36,6 +40,10 @@ public class BaseTest {
     private WebDriver driver;
 
     protected final Log log;
+
+    private enum BROWSER_NAME {
+        firefox, chrome, safari, edge, opera, brave
+    }
 
     private String projectPath = System.getProperty("user.dir");
 
@@ -117,6 +125,48 @@ public class BaseTest {
         driver.get(pageUrl);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+
+        return driver;
+    }
+
+    public WebDriver getBrowserDriver(String browserName, String pageUrl, String ipAddress, String port) {
+
+        DesiredCapabilities capabilities = null;
+
+        if (browserName.equals(String.valueOf(BROWSER_NAME.firefox))) {
+            WebDriverManager.firefoxdriver().setup();
+
+            capabilities = DesiredCapabilities.firefox();
+            capabilities.setAcceptInsecureCerts(true);
+            capabilities.setBrowserName(String.valueOf(BROWSER_NAME.firefox));
+            capabilities.setPlatform(Platform.WINDOWS);
+
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            firefoxOptions.merge(capabilities);
+        } else if (browserName.equals(String.valueOf(BROWSER_NAME.chrome))) {
+            WebDriverManager.chromedriver().setup();
+
+            capabilities = DesiredCapabilities.chrome();
+            capabilities.setAcceptInsecureCerts(true);
+            capabilities.setBrowserName(String.valueOf(BROWSER_NAME.chrome));
+            capabilities.setPlatform(Platform.WINDOWS);
+
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.merge(capabilities);
+        }
+        else {
+            throw new RuntimeException("Browser name is invalid");
+        }
+
+        try {
+            driver = new RemoteWebDriver(new URL(String.format("http://%s:%s/wd/hub", ipAddress, port)), capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get(pageUrl);
 
         return driver;
     }

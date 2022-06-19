@@ -1,11 +1,15 @@
+pageObjects\bankguru\PageGeneratorManager.class
 commons\BasePageFactory$1.class
 reportConfig\AllureTestListener.class
+pageObjects\bankguru\LoginPageObject.class
 utilities\DataFaker.class
 reportConfig\ReportNGListener.class
 commons\BaseTest.class
 reportConfig\MethodListener.class
 pageObjects\saucedemo\InventoryPageObject.class
 reportConfig\ExtentReportV5\ExtentManager.class
+commons\BaseTest$BROWSER_NAME.class
+jdbc\DBConnect.class
 commons\BasePage$2.class
 commons\VerificationFailures.class
 commons\GlobalConstants.class
@@ -17,6 +21,7 @@ commons\BasePageFactory.class
 utilities\DataHelper$User.class
 reportConfig\TestNGAppender.class
 reportConfig\ExtentReportV5\ExtentTestListener.class
+envConfig\Environment.class
 interfaces\BasePageUI.class
 commons\BasePage.class
 reportConfig\ExtentReportV5\ExtentTestManager.class
