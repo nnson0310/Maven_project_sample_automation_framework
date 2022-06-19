@@ -9,12 +9,17 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="7">saucedemo</th></tr>
-<tr><td><a href="#t0">Firefox</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num">10,752</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Chrome</a></td><td class="num">0</td><td class="num attn">1</td><td class="num">0</td><td class="num">245</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">saucedemo</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Firefox &#8212; passed</th></tr><tr class="passedeven"><td rowspan="3">saucedemo.TC_01_Sort_Asc_Desc</td><td><a href="#m0">TC_01</a></td><td rowspan="1">1655267638842</td><td rowspan="1">795</td></tr><tr class="passedeven"><td><a href="#m1">TC_02</a></td><td rowspan="1">1655267639683</td><td rowspan="1">692</td></tr><tr class="passedeven"><td><a href="#m2">TC_03</a></td><td rowspan="1">1655267640384</td><td rowspan="1">117</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">saucedemo</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Chrome &#8212; failed (configuration methods)</th></tr><tr class="failedeven"><td rowspan="1">bankguru.TC_04_Selenium_Grid</td><td><a href="#m0">setUp</a></td><td rowspan="1">1655611363509</td><td rowspan="1">6</td></tr><tr><th colspan="4">Chrome &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="1">bankguru.TC_04_Selenium_Grid</td><td><a href="#m1">TC_01</a></td><td rowspan="1">1655611363717</td><td rowspan="1">0</td></tr></tbody>
 </table>
-<h2>Firefox</h2><h3 id="m0">saucedemo.TC_01_Sort_Asc_Desc#TC_01</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">saucedemo.TC_01_Sort_Asc_Desc#TC_02</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">saucedemo.TC_01_Sort_Asc_Desc#TC_03</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Chrome</h2><h3 id="m0">bankguru.TC_04_Selenium_Grid#setUp</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th><th>Parameter #3</th><th>Parameter #4</th></tr><tr class="param stripe"><td>chrome</td><td>https://demo.guru99.com/v1/</td><td>192.168.194.111</td><td>5555</td></tr><tr><th colspan="4">Exception</th></tr><tr><td colspan="4"><div class="stacktrace">java.lang.RuntimeException: Browser name is invalid
+	at commons.BaseTest.getBrowserDriver(BaseTest.java:158)
+	at bankguru.TC_04_Selenium_Grid.setUp(TC_04_Selenium_Grid.java:26)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">bankguru.TC_04_Selenium_Grid#TC_01</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.RuntimeException: Browser name is invalid
+	at commons.BaseTest.getBrowserDriver(BaseTest.java:158)
+	at bankguru.TC_04_Selenium_Grid.setUp(TC_04_Selenium_Grid.java:26)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
