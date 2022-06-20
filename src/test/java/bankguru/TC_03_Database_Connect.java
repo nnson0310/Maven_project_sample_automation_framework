@@ -28,17 +28,17 @@ public class TC_03_Database_Connect extends BaseTest {
     @BeforeClass
     public void setUp(String browserName) {
 
-        String envName = System.getProperty("env");
-        System.out.println("Environment of command line = " + envName);
-        if (envName == null || envName.equals("")) {
-            envName = "dev";
-        }
-        ConfigFactory.setProperty("envName", envName);
-
-        Environment environment = ConfigFactory.create(Environment.class);
-        driver = getBrowserDriver(browserName, environment.appUrl());
-
-        loginPage = pageGeneratorManager.getLoginPageObject(driver);
+//        String envName = System.getProperty("env");
+//        System.out.println("Environment of command line = " + envName);
+//        if (envName == null || envName.equals("")) {
+//            envName = "dev";
+//        }
+//        ConfigFactory.setProperty("envName", envName);
+//
+//        Environment environment = ConfigFactory.create(Environment.class);
+//        driver = getBrowserDriver(browserName, environment.appUrl());
+//
+//        loginPage = pageGeneratorManager.getLoginPageObject(driver);
     }
 
     @Test

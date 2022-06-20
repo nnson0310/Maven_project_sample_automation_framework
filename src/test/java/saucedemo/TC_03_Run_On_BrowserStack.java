@@ -35,15 +35,15 @@ public class TC_03_Run_On_BrowserStack extends BaseTest {
     @Parameters({"url", "browser", "os", "osVersion" , "browserVersion"})
     @BeforeClass
     public void setUp(String pageUrl, String browserName, String platform, String platformVersion, String browserVersion) {
-        driver = getBrowserDriverByBrowserStack(pageUrl, browserName, platform, platformVersion, browserVersion);
-        users = DataHelper.getUsers();
-
-        users.forEach(user -> {
-            loginPage = pageGeneratorManager.getLoginPageObject(driver);
-            loginPage.enterUsername(driver, user.getUsername());
-            loginPage.enterPassword(driver, user.getPassword());
-            inventoryPage = loginPage.clickLoginButton(driver);
-        });
+//        driver = getBrowserDriverByBrowserStack(pageUrl, browserName, platform, platformVersion, browserVersion);
+//        users = DataHelper.getUsers();
+//
+//        users.forEach(user -> {
+//            loginPage = pageGeneratorManager.getLoginPageObject(driver);
+//            loginPage.enterUsername(driver, user.getUsername());
+//            loginPage.enterPassword(driver, user.getPassword());
+//            inventoryPage = loginPage.clickLoginButton(driver);
+//        });
     }
 
     @Test

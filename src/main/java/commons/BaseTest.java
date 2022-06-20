@@ -1,33 +1,21 @@
 package commons;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import commons.envFactory.CloudEnvFactory;
+import commons.envFactory.GridEnvFactory;
+import commons.envFactory.LocalEnvFactory;
+import commons.envFactory.SERVER_NAME;
+import envConfig.Environment;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -42,10 +30,6 @@ public class BaseTest {
     private WebDriver driver;
 
     protected final Log log;
-
-    private enum BROWSER_NAME {
-        firefox, chrome, safari, edge, opera, brave
-    }
 
     private String projectPath = System.getProperty("user.dir");
 
@@ -66,161 +50,46 @@ public class BaseTest {
         }
     }
 
-    public WebDriver getBrowserDriver(String browserName, String pageUrl) {
-        if (browserName.equals("firefox")) {
-            // System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-            WebDriverManager.firefoxdriver().setup();
-
-            FirefoxOptions firefoxOptions = new FirefoxOptions();
-            firefoxOptions.setAcceptInsecureCerts(true);
-
-            FirefoxProfile firefoxProfile = new FirefoxProfile();
-            firefoxProfile.setPreference("intl.accept_languages", "vi-VN, vi");
-            firefoxOptions.setProfile(firefoxProfile);
-
-            driver = new FirefoxDriver(firefoxOptions);
-        } else if (browserName.equals("chrome")) {
-            // System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
-            WebDriverManager.chromedriver().setup();
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.setAcceptInsecureCerts(true);
-
-            //use chromeOptions class to setup before running testcases
-            //such as set language, disable notifications
-            chromeOptions.addArguments("--lang=vi");
-            chromeOptions.addArguments("--disable-infobars");
-            chromeOptions.addArguments("--disable-notifications");
-            chromeOptions.addArguments("--disable-geolocation");
-            chromeOptions.setExperimentalOption("useAutomationExtension", false);
-            chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-//            chromeOptions.addArguments("--incognito");
-
-            driver = new ChromeDriver(chromeOptions);
-        } else if (browserName.equals("edge")) {
-            //System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
-            WebDriverManager.edgedriver().setup();
-            EdgeOptions edgeOptions = new EdgeOptions();
-            edgeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-            driver = new EdgeDriver(edgeOptions);
-        } else if (browserName.equals("h_firefox")) {
-            // System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-            WebDriverManager.firefoxdriver().setup();
-            //set up headless options for firefox browser
-            FirefoxOptions options = new FirefoxOptions();
-            options.addArguments("--headless");
-            options.addArguments("--window-size=1920,1200");
-            driver = new FirefoxDriver(options);
-        }
-        else if (browserName.equals("brave")) {
-            // System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
-            WebDriverManager.chromedriver().setup();
-
-            ChromeOptions options = new ChromeOptions();
-            options.setBinary("C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe");
-
-            driver = new ChromeDriver(options);
-        }
-        else {
-            throw new RuntimeException("Browser name is invalid");
-        }
-
-        driver.get(pageUrl);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-
-        return driver;
-    }
-
-    public WebDriver getBrowserDriver(String browserName, String pageUrl, String ipAddress, String port) {
-
-        DesiredCapabilities capabilities = null;
-
-        if (browserName.equals(String.valueOf(BROWSER_NAME.firefox))) {
-            WebDriverManager.firefoxdriver().setup();
-
-            capabilities = DesiredCapabilities.firefox();
-            capabilities.setAcceptInsecureCerts(true);
-            capabilities.setBrowserName(String.valueOf(BROWSER_NAME.firefox));
-            capabilities.setPlatform(Platform.WINDOWS);
-
-            FirefoxOptions firefoxOptions = new FirefoxOptions();
-            firefoxOptions.merge(capabilities);
-        } else if (browserName.equals(String.valueOf(BROWSER_NAME.chrome))) {
-            WebDriverManager.chromedriver().setup();
-
-            capabilities = DesiredCapabilities.chrome();
-            capabilities.setAcceptInsecureCerts(true);
-            capabilities.setBrowserName(String.valueOf(BROWSER_NAME.chrome));
-            capabilities.setPlatform(Platform.WINDOWS);
-
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.merge(capabilities);
-        }
-        else {
-            throw new RuntimeException("Browser name is invalid");
-        }
-
-        try {
-            driver = new RemoteWebDriver(new URL(String.format("http://%s:%s/wd/hub", ipAddress, port)), capabilities);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get(pageUrl);
-
-        return driver;
-    }
-
-    protected WebDriver getBrowserDriverBySaucelabs(
-            String pageUrl,
+    public WebDriver getBrowserDriver(
             String browserName,
-            String platform,
+            String envName,
+            String ipAddress,
+            String port,
+            String os,
+            String osVersion,
             String browserVersion
     ) {
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName", platform);
-        capabilities.setCapability("browserName", browserName);
-        capabilities.setCapability("browserVersion", browserVersion);
-        Map<String, Object> sauceOptions = new HashMap<>();
-        sauceOptions.put("name", "Run on Saucelabs on " + platform + " and on " + browserName);
-        capabilities.setCapability("sauce:options", sauceOptions);
-
-        RemoteWebDriver driver = null;
-        try {
-            driver = new RemoteWebDriver(new URL(GlobalConstants.SAUCELABS_URL), capabilities);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        switch(envName) {
+            case "grid":
+                driver = new GridEnvFactory(browserName, ipAddress, port).getDriver();
+                break;
+            case "cloud":
+                driver = new CloudEnvFactory(browserName, os, osVersion, browserVersion).getDriver();
+                break;
+            default:
+                driver = new LocalEnvFactory(browserName).getDriver();
         }
+
+        String url = "https://www.saucedemo.com/";
 
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get(pageUrl);
+        driver.get(url);
+
         return driver;
     }
 
-    protected WebDriver getBrowserDriverByBrowserStack(String pageUrl, String browserName, String platform, String platformVersion, String browserVersion) {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+    protected String getEnvironmentUrl() {
+        String envName = System.getProperty("env");
 
-        capabilities.setCapability("os", platform);
-        capabilities.setCapability("os_version", platformVersion);
-        capabilities.setCapability("browser", browserName);
-        capabilities.setCapability("browser_version", browserVersion);
-        capabilities.setCapability("name", "Run test on BrowserStack");
-
-        RemoteWebDriver driver = null;
-        try {
-            driver = new RemoteWebDriver(new URL(GlobalConstants.BROWSER_STACK_URL), capabilities);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        if (envName == null || envName.equals("")) {
+            envName = "dev";
         }
+        ConfigFactory.setProperty("envName", envName);
 
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get(pageUrl);
-        return driver;
+        Environment environment = ConfigFactory.create(Environment.class);
+
+        return environment.appUrl();
     }
 
     //Custom Assert
@@ -389,4 +258,32 @@ public class BaseTest {
             }
         }
     }
+
+    //    protected WebDriver getBrowserDriverBySaucelabs(
+//            String pageUrl,
+//            String browserName,
+//            String platform,
+//            String browserVersion
+//    ) {
+//
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("platformName", platform);
+//        capabilities.setCapability("browserName", browserName);
+//        capabilities.setCapability("browserVersion", browserVersion);
+//        Map<String, Object> sauceOptions = new HashMap<>();
+//        sauceOptions.put("name", "Run on Saucelabs on " + platform + " and on " + browserName);
+//        capabilities.setCapability("sauce:options", sauceOptions);
+//
+//        RemoteWebDriver driver = null;
+//        try {
+//            driver = new RemoteWebDriver(new URL(GlobalConstants.SAUCELABS_URL), capabilities);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        driver.manage().window().maximize();
+//        driver.get(pageUrl);
+//        return driver;
+//    }
 }

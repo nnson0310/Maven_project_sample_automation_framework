@@ -22,7 +22,7 @@ public class TC_02_Multi_Environment_Maven_Surefire extends BaseTest {
     @Parameters({"browser", "url"})
     @BeforeClass
     public void setUp(String browserName, String pageUrl) {
-        driver = getBrowserDriver(browserName, pageUrl);
+//        driver = getBrowserDriver(browserName, pageUrl);
     }
 
     @Test
