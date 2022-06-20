@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Saucelabs"
+           tests="3"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="18.824">
+  <properties />
+  
+  
+            <testcase name="TC_03" time="2.991" classname="saucedemo.TC_02_Run_On_Saucelabs" />
+                <testcase name="TC_01" time="7.989" classname="saucedemo.TC_02_Run_On_Saucelabs" />
+                <testcase name="TC_02" time="7.844" classname="saucedemo.TC_02_Run_On_Saucelabs" />
+      
+</testsuite>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name="saucedemo" parallel="false">
+    <listeners>
+        <listener class-name="reportConfig.MethodListener"></listener>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="reportConfig.ReportNGListener"/>
+    </listeners>
+    <parameter name="url" value="https://www.saucedemo.com/"></parameter>
+    <test name="Saucelabs" description="Run on saucelabs">
+        <parameter name="browser" value="firefox"></parameter>
+        <parameter name="platform" value="Windows 10"></parameter>
+        <parameter name="browserVersion" value="latest"></parameter>
+        <classes>
+            <class name="saucedemo.TC_02_Run_On_Saucelabs"/>
+        </classes>
+    </test>
+</suite>

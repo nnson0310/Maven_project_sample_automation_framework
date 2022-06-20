@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -168,6 +170,56 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.get(pageUrl);
 
+        return driver;
+    }
+
+    protected WebDriver getBrowserDriverBySaucelabs(
+            String pageUrl,
+            String browserName,
+            String platform,
+            String browserVersion
+    ) {
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", platform);
+        capabilities.setCapability("browserName", browserName);
+        capabilities.setCapability("browserVersion", browserVersion);
+        Map<String, Object> sauceOptions = new HashMap<>();
+        sauceOptions.put("name", "Run on Saucelabs on " + platform + " and on " + browserName);
+        capabilities.setCapability("sauce:options", sauceOptions);
+
+        RemoteWebDriver driver = null;
+        try {
+            driver = new RemoteWebDriver(new URL(GlobalConstants.SAUCELABS_URL), capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get(pageUrl);
+        return driver;
+    }
+
+    protected WebDriver getBrowserDriverByBrowserStack(String pageUrl, String browserName, String platform, String platformVersion, String browserVersion) {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+        capabilities.setCapability("os", platform);
+        capabilities.setCapability("os_version", platformVersion);
+        capabilities.setCapability("browser", browserName);
+        capabilities.setCapability("browser_version", browserVersion);
+        capabilities.setCapability("name", "Run test on BrowserStack");
+
+        RemoteWebDriver driver = null;
+        try {
+            driver = new RemoteWebDriver(new URL(GlobalConstants.BROWSER_STACK_URL), capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get(pageUrl);
         return driver;
     }
 

@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 1, Time elapsed: 1.89 s <<< FAILURE! - in TestSuite
-setUp(bankguru.TC_04_Selenium_Grid)  Time elapsed: 1.418 s  <<< FAILURE!
-java.lang.RuntimeException: Browser name is invalid
-	at bankguru.TC_04_Selenium_Grid.setUp(TC_04_Selenium_Grid.java:26)
-
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 87 s - in TestSuite

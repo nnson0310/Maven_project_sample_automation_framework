@@ -171,7 +171,7 @@
                 <suiteXmlFiles>
 <!--                    <file>src/test/resources/RunSauceDemo.xml</file>-->
 <!--                    <file>src/test/resources/RunBankguruOn${environment}.xml</file>-->
-                    <file>src/test/resources/RunBankguru.xml</file>
+                    <file>src/test/resources/RunOnBrowserStack.xml</file>
                 </suiteXmlFiles>
 
                 <!-- Argument -->
