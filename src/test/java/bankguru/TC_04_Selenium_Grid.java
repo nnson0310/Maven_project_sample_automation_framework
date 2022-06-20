@@ -2,10 +2,7 @@ package bankguru;
 
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageObjects.bankguru.LoginPageObject;
 import pageObjects.bankguru.PageGeneratorManager;
 
@@ -19,11 +16,19 @@ public class TC_04_Selenium_Grid extends BaseTest {
 
     LoginPageObject loginPage;
 
-    @Parameters({"browser", "url", "ipAddress", "port"})
+    @Parameters({"browser", "url", "ipAddress", "port", "environment"})
     @BeforeClass
-    public void setUp(String browserName, String pageUrl, String ipAddress, String port) {
+    public void setUp(
+            @Optional("firefox") String browserName,
+            @Optional("localhost") String ipAddress,
+            @Optional("4444") String port,
+            @Optional("local") String environment,
+            @Optional("Window") String os,
+            @Optional("10") String osVersion,
+            @Optional("latest") String browserVersion
+    ) {
 
-        driver = getBrowserDriver(browserName, pageUrl, ipAddress, port);
+        driver = getBrowserDriver(browserName, environment, ipAddress, port, os, osVersion, browserVersion);
 
         loginPage = pageGeneratorManager.getLoginPageObject(driver);
     }
@@ -37,7 +42,7 @@ public class TC_04_Selenium_Grid extends BaseTest {
 
        sleepInSeconds(2);
 
-       verifyFalse(true);
+       verifyFalse(false);
     }
 
     @AfterClass(alwaysRun = true)

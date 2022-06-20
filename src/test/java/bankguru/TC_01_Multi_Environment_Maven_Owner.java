@@ -18,15 +18,8 @@ public class TC_01_Multi_Environment_Maven_Owner extends BaseTest {
     @Parameters({"browser"})
     @BeforeClass
     public void setUp(String browserName) {
-        String envName = System.getProperty("env");
-        System.out.println("Environment of command line = " + envName);
-        if (envName == null || envName.equals("")) {
-            envName = "dev";
-        }
-        ConfigFactory.setProperty("envName", envName);
 
-        Environment environment = ConfigFactory.create(Environment.class);
-        driver = getBrowserDriver(browserName, environment.appUrl());
+//        driver = getBrowserDriver(browserName, environment.appUrl());
     }
 
     @Test

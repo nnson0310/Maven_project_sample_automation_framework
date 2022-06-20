@@ -2,10 +2,7 @@ package saucedemo;
 
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageObjects.saucedemo.InventoryPageObject;
 import pageObjects.saucedemo.LoginPageObject;
 import pageObjects.saucedemo.PageGeneratorManager;
@@ -13,7 +10,7 @@ import utilities.DataHelper;
 
 import java.util.List;
 
-public class TC_02_Run_On_Saucelabs extends BaseTest {
+public class TC_04_Refactor_Environment extends BaseTest {
 
     WebDriver driver;
 
@@ -27,11 +24,18 @@ public class TC_02_Run_On_Saucelabs extends BaseTest {
 
     PageGeneratorManager pageGeneratorManager;
 
-    @Parameters({"url", "browser", "platform", "browserVersion"})
+    @Parameters({"browser", "ipAddress", "port", "environment", "os" , "osVersion", "browserVersion"})
     @BeforeClass
-    public void setUp(String pageUrl, String browserName, String platform, String browserVersion) {
-//        driver = getBrowserDriverBySaucelabs(pageUrl, browserName, platform, browserVersion);
-        System.out.println(driver);
+    public void setUp(
+            @Optional("firefox") String browserName,
+            @Optional("localhost") String ipAddress,
+            @Optional("4444") String port,
+            @Optional("local") String environment,
+            @Optional("Windows") String os,
+            @Optional("10") String osVersion,
+            @Optional("latest") String browserVersion
+    ) {
+        driver = getBrowserDriver(browserName, environment, ipAddress, port, os, osVersion, browserVersion);
         users = DataHelper.getUsers();
 
         users.forEach(user -> {
@@ -49,22 +53,6 @@ public class TC_02_Run_On_Saucelabs extends BaseTest {
 
         inventoryPage.sortBySelectDropdown(driver, "Name (A to Z)");
         verifyTrue(inventoryPage.isProductNameSortedAscending(driver));
-
-    }
-
-    @Test
-    public void TC_02() {
-        inventoryPage.sortBySelectDropdown(driver, "Price (high to low)");
-        verifyTrue(inventoryPage.isProductPriceSortedDescending(driver));
-
-        inventoryPage.sortBySelectDropdown(driver, "Price (low to high)");
-        verifyTrue(inventoryPage.isProductPriceSortedAscending(driver));
-    }
-
-    @Test
-    public void TC_03() {
-        inventoryPage.sortBySelectDropdown(driver, "Price (low to high)");
-        verifyTrue(inventoryPage.isProductPriceSortedAscending(driver));
     }
 
     @AfterClass(alwaysRun = true)

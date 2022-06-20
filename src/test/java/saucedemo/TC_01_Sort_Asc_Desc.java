@@ -27,22 +27,15 @@ public class TC_01_Sort_Asc_Desc extends BaseTest {
     @Parameters({"browser", "url"})
     @BeforeClass
     public void setUp(String browserName, String pageUrl) {
-        driver = getBrowserDriver(browserName, pageUrl);
-
-//        username = User.Credentials.username;
-//        password = User.Credentials.password;
-
-        users = DataHelper.getUsers();
-
-//        System.out.println(username);
-//        System.out.println(password);
-
-        users.forEach(user -> {
-            loginPage = pageGeneratorManager.getLoginPageObject(driver);
-            loginPage.enterUsername(driver, user.getUsername());
-            loginPage.enterPassword(driver, user.getPassword());
-            inventoryPage = loginPage.clickLoginButton(driver);
-        });
+//        driver = getBrowserDriver(browserName, pageUrl);
+//        users = DataHelper.getUsers();
+//
+//        users.forEach(user -> {
+//            loginPage = pageGeneratorManager.getLoginPageObject(driver);
+//            loginPage.enterUsername(driver, user.getUsername());
+//            loginPage.enterPassword(driver, user.getPassword());
+//            inventoryPage = loginPage.clickLoginButton(driver);
+//        });
     }
 
     @Test

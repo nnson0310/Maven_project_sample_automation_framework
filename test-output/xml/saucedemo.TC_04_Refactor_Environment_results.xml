@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Firefox"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="6.854">
+  <properties />
+  
+  
+            <testcase name="TC_01" time="6.854" classname="saucedemo.TC_04_Refactor_Environment" />
+      
+</testsuite>
