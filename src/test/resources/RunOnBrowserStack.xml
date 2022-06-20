@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name="saucedemo" parallel="false">
+    <listeners>
+        <listener class-name="reportConfig.MethodListener"></listener>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="reportConfig.ReportNGListener"/>
+    </listeners>
+    <parameter name="url" value="https://www.saucedemo.com/"></parameter>
+
+    <test name="Firefox" description="Run on firefox">
+        <parameter name="browser" value="firefox"></parameter>
+        <parameter name="os" value="Windows"></parameter>
+        <parameter name="osVersion" value="10"></parameter>
+        <parameter name="browserVersion" value="latest"></parameter>
+        <classes>
+            <class name="saucedemo.TC_03_Run_On_BrowserStack"/>
+        </classes>
+    </test>
+
+    <test name="Safari" description="Run on safari">
+        <parameter name="browser" value="safari"></parameter>
+        <parameter name="os" value="OS X"></parameter>
+        <parameter name="osVersion" value="Big Sur"></parameter>
+        <parameter name="browserVersion" value="latest"></parameter>
+        <classes>
+            <class name="saucedemo.TC_03_Run_On_BrowserStack"/>
+        </classes>
+    </test>
+</suite>
