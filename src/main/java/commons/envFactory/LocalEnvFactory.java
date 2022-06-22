@@ -1,5 +1,6 @@
 package commons.envFactory;
 
+import commons.browserFactory.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,61 +27,19 @@ public class LocalEnvFactory {
         BROWSER_NAME browser = BROWSER_NAME.valueOf(browserName.toLowerCase());
 
         if (browser == BROWSER_NAME.firefox) {
-            WebDriverManager.firefoxdriver().setup();
-
-            FirefoxOptions firefoxOptions = new FirefoxOptions();
-            firefoxOptions.setAcceptInsecureCerts(true);
-
-            driver = new FirefoxDriver(firefoxOptions);
+            driver = new FirefoxDriverFactory().getBrowserDriver();
         } else if (browser == BROWSER_NAME.chrome) {
-            WebDriverManager.chromedriver().setup();
-
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.setAcceptInsecureCerts(true);
-            //use chromeOptions class to setup before running testcases
-            //such as set language, disable notifications
-            chromeOptions.addArguments("--lang=vi");
-            chromeOptions.addArguments("--disable-infobars");
-            chromeOptions.addArguments("--disable-notifications");
-            chromeOptions.addArguments("--disable-geolocation");
-            chromeOptions.setExperimentalOption("useAutomationExtension", false);
-            chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-
-            driver = new ChromeDriver(chromeOptions);
+            driver = new ChromeDriverFactory().getBrowserDriver();
         } else if (browser == BROWSER_NAME.edge) {
-            WebDriverManager.edgedriver().setup();
-
-            EdgeOptions edgeOptions = new EdgeOptions();
-            edgeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-
-            driver = new EdgeDriver(edgeOptions);
+            driver =  new EdgeDriverFactory().getBrowserDriver();
         } else if (browser == BROWSER_NAME.h_firefox) {
-            WebDriverManager.firefoxdriver().setup();
-
-            //set up headless options for firefox browser
-            FirefoxOptions options = new FirefoxOptions();
-            options.addArguments("--headless");
-            options.addArguments("--window-size=1920,1200");
-
-            driver = new FirefoxDriver(options);
+            driver = new HFirefoxDriverFactory().getBrowserDriver();
         }
         else if (browser == BROWSER_NAME.h_chrome) {
-            WebDriverManager.chromedriver().setup();
-
-            //set up headless options for chrome browser
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless");
-            options.addArguments("--window-size=1920,1200");
-
-            driver = new ChromeDriver(options);
+            driver = new HChromeDriverFactory().getBrowserDriver();
         }
         else if (browser == BROWSER_NAME.brave) {
-            WebDriverManager.chromedriver().setup();
-
-            ChromeOptions options = new ChromeOptions();
-            options.setBinary("C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe");
-
-            driver = new ChromeDriver(options);
+            driver = new BraveDriverFactory().getBrowserDriver();
         }
         else {
             throw new RuntimeException("Browser name is invalid");

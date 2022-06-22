@@ -1,0 +1,9 @@
+1655784585433	geckodriver	INFO	Listening on 127.0.0.1:40625
+1655784586250	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\son\\AppData\\Local\\Temp\\rust_mozprofileViwcub"
+1655784588549	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\son\\AppData\\Local\\Temp\\rust_mozprofileViwcub\\search.json.mozlz4", (void 0)))
+1655784599005	Marionette	INFO	Listening on port 50135
+1655784599131	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/modules/PartitioningExceptionListService.jsm, line 69: NS_ERROR_MALFORMED_URI: Component returned failure code: 0x804b000a (NS_ERROR_MALFORMED_URI) [nsIPartitioningExceptionListObserver.onExceptionListUpdate]
+1655784602895	Marionette	INFO	Stopped listening on port 50135
+JavaScript error: resource:///modules/Interactions.jsm, line 209: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
