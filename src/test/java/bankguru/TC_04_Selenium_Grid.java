@@ -16,7 +16,7 @@ public class TC_04_Selenium_Grid extends BaseTest {
 
     LoginPageObject loginPage;
 
-    @Parameters({"browser", "url", "ipAddress", "port", "environment"})
+    @Parameters({"browser", "ipAddress", "port", "environment", "os", "osVersion", "browserVersion"})
     @BeforeClass
     public void setUp(
             @Optional("firefox") String browserName,

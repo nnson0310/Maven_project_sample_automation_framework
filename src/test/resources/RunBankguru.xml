@@ -9,9 +9,8 @@
     <test name="Chrome" description="Run on chrome">
         <parameter name="browser" value="chrome"></parameter>
         <parameter name="environment" value="grid"></parameter>
-        <parameter name="ipAddress" value="192.168.194.111"></parameter>
-        <parameter name="url" value="https://demo.guru99.com/v1/"></parameter>
-        <parameter name="port" value="5555"></parameter>
+        <parameter name="ipAddress" value="localhost"></parameter>
+        <parameter name="port" value="4444"></parameter>
         <classes>
             <class name="bankguru.TC_04_Selenium_Grid"/>
         </classes>

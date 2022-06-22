@@ -33,7 +33,7 @@ public class GridEnvFactory {
             capabilities = DesiredCapabilities.firefox();
             capabilities.setAcceptInsecureCerts(true);
             capabilities.setBrowserName(String.valueOf(BROWSER_NAME.firefox));
-            capabilities.setPlatform(Platform.WINDOWS);
+            capabilities.setPlatform(Platform.ANY);
 
             FirefoxOptions firefoxOptions = new FirefoxOptions();
             firefoxOptions.merge(capabilities);
@@ -43,7 +43,7 @@ public class GridEnvFactory {
             capabilities = DesiredCapabilities.chrome();
             capabilities.setAcceptInsecureCerts(true);
             capabilities.setBrowserName(String.valueOf(BROWSER_NAME.chrome));
-            capabilities.setPlatform(Platform.WINDOWS);
+            capabilities.setPlatform(Platform.ANY);
 
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.merge(capabilities);

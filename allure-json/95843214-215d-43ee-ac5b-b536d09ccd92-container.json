@@ -1,0 +1,1 @@
+{"uuid":"95843214-215d-43ee-ac5b-b536d09ccd92","name":"bankguru","children":["ffb24e3b-71ff-4218-915e-3ccc2d02195c"],"befores":[{"name":"deleteAllureReport","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1655869538902,"stop":1655869538911}],"afters":[],"links":[],"start":1655869538874,"stop":1655869553477}

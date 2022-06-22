@@ -1,9 +1,8 @@
 package commons;
 
-import commons.envFactory.CloudEnvFactory;
-import commons.envFactory.GridEnvFactory;
 import commons.envFactory.LocalEnvFactory;
-import commons.envFactory.SERVER_NAME;
+import commons.envFactory.GridEnvFactory;
+import commons.envFactory.CloudEnvFactory;
 import envConfig.Environment;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.commons.logging.Log;
@@ -70,7 +69,7 @@ public abstract class BaseTest {
                 driver = new LocalEnvFactory(browserName).getDriver();
         }
 
-        String url = "https://www.saucedemo.com/";
+        String url = "https://demo.guru99.com/v1/";
 
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().maximize();
