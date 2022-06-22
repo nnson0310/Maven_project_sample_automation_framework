@@ -19,7 +19,7 @@ import java.io.File;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest {
+public abstract class BaseTest {
 
     /*
     * Headless browser ám chỉ việc trình duyệt được chạy ngầm mà k hiển

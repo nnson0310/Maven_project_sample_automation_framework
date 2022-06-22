@@ -12,13 +12,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class BasePage {
+public abstract class BasePage {
 
     private int explicitWaitTimeout = GlobalConstants.LONG_TIME_OUT;
-
-    public static BasePage getBasePage() {
-        return new BasePage();
-    }
 
     private WebDriverWait explicitWait;
 

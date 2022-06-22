@@ -15,9 +15,9 @@ public class BasePageFactory {
 
     private int explicitWaitTimeout = 20;
 
-    public static BasePage getBasePage() {
-        return new BasePage();
-    }
+//    public static BasePage getBasePage() {
+//        return new BasePage();
+//    }
 
     private WebDriverWait explicitWait;
 

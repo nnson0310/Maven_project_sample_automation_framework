@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 2, Errors: 0, Skipped: 1, Time elapsed: 25.21 s <<< FAILURE! - in TestSuite
-setUp(saucedemo.TC_04_Refactor_Environment)  Time elapsed: 24.864 s  <<< FAILURE!
-java.lang.NullPointerException
-	at saucedemo.TC_04_Refactor_Environment.setUp(TC_04_Refactor_Environment.java:39)
-
-tearDown(saucedemo.TC_04_Refactor_Environment)  Time elapsed: 24.916 s  <<< FAILURE!
-java.lang.NullPointerException
-	at saucedemo.TC_04_Refactor_Environment.tearDown(TC_04_Refactor_Environment.java:54)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 28.407 s - in TestSuite

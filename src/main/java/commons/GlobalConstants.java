@@ -11,15 +11,21 @@ public class GlobalConstants {
 
     public static final int THREAD_SLEEP_MILLIS = 1000;
 
+    public static final String OS_NAME = System.getProperty("os.name");
+
     public static final String PROJECT_PATH = System.getProperty("user.dir");
 
     public static final String UPLOAD_FILE_LOCATION = PROJECT_PATH + File.separator + "uploadFiles" + File.separator;
+
+    public static final String DOWNLOAD_FILE_LOCATION = PROJECT_PATH + File.separator + "downloadedFiles" + File.separator;
 
     public static final String REPORT_NG_CAPTURED_SCREENSHOT = PROJECT_PATH + File.separator + "reportScreenshot" + File.separator + "reportNG" + File.separator;
 
     public static final String EXTENT_REPORT_CAPTURED_SCREENSHOT = PROJECT_PATH + File.separator + "reportScreenshot" + File.separator + "extentReport" + File.separator;
 
     public static final String JAVA_VERSION = System.getProperty("java.version");
+
+    public static final String BROWSER_LOGS_PATH = PROJECT_PATH + File.separator + "browserLogs" + File.separator;
 
     //BrowserStack
     public static final String BROWSER_STACK_USERNAME = "thuminh_bDCM2T";

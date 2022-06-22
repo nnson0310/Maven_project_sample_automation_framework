@@ -1,6 +1,10 @@
+commons\browserFactory\HFirefoxDriverFactory.class
 pageObjects\bankguru\PageGeneratorManager.class
+commons\browserFactory\FirefoxDriverFactory.class
 commons\BasePageFactory$1.class
+commons\browserFactory\BraveDriverFactory.class
 reportConfig\AllureTestListener.class
+commons\browserFactory\HChromeDriverFactory.class
 pageObjects\bankguru\LoginPageObject.class
 utilities\DataFaker.class
 reportConfig\ReportNGListener.class
@@ -8,11 +12,14 @@ commons\BaseTest.class
 commons\envFactory\GridEnvFactory.class
 reportConfig\MethodListener.class
 pageObjects\saucedemo\InventoryPageObject.class
+commons\browserFactory\SafariDriverFactory.class
 reportConfig\ExtentReportV5\ExtentManager.class
 commons\envFactory\SERVER_NAME.class
 jdbc\DBConnect.class
 commons\BasePage$2.class
 commons\VerificationFailures.class
+commons\browserFactory\EdgeDriverFactory.class
+commons\browserFactory\BrowserFactory.class
 commons\envFactory\CloudEnvFactory.class
 commons\GlobalConstants.class
 commons\envFactory\LocalEnvFactory.class
@@ -31,7 +38,9 @@ commons\BasePage.class
 reportConfig\ExtentReportV5\ExtentTestManager.class
 utilities\DataHelper.class
 commons\envFactory\BROWSER_NAME.class
+commons\browserFactory\BrowserNotSupportedException.class
 utilities\ExcelHelper.class
+commons\browserFactory\ChromeDriverFactory.class
 pageObjects\saucedemo\PageGeneratorManager.class
 utilities\MailHelper.class
 commons\BasePageFactory$2.class
