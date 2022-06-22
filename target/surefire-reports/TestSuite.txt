@@ -1,4 +1,13 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 28.407 s - in TestSuite
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 1, Time elapsed: 1.721 s <<< FAILURE! - in TestSuite
+setUp(bankguru.TC_04_Selenium_Grid)  Time elapsed: 1.248 s  <<< FAILURE!
+org.testng.TestNGException: 
+
+Method setUp requires 7 parameters but 5 were supplied in the BeforeClass annotation.
+
+tearDown(bankguru.TC_04_Selenium_Grid)  Time elapsed: 1.504 s  <<< FAILURE!
+java.lang.NullPointerException
+	at bankguru.TC_04_Selenium_Grid.tearDown(TC_04_Selenium_Grid.java:50)
+
